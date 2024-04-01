@@ -18,7 +18,7 @@ const Signup = () => {
 
     try {
       await axios
-        .post("http://localhost:3003/signup", {
+        .post("https://pro-refer-deployment-server.vercel.app/signup", {
           personalemail,
           password,
         })

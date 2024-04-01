@@ -16,7 +16,7 @@ export default function Empcredentials() {
   const [companyname, setCompanyName] = useState(null);
   const apiCall = async () => {
     try {
-      await axios.get("http://localhost:3003/api/getCompany").then((res) => {
+      await axios.get("https://pro-refer-deployment-server.vercel.app/api/getCompany").then((res) => {
         // console.log(res.data);
         setCompanyList(res.data);
         setLoading(false);
@@ -56,7 +56,7 @@ export default function Empcredentials() {
   const getDetails = async () => {
     try {
       await axios
-        .post("http://localhost:3003/api/getEditProfileEmployeeDetails")
+        .post("https://pro-refer-deployment-server.vercel.app/api/getEditProfileEmployeeDetails")
         .then((res) => {
           res.data.Work_Email && setWorkEmail(res.data.Work_Email);
           res.data.Position && setPosition(res.data.Position);
@@ -99,7 +99,7 @@ export default function Empcredentials() {
           workEmail === null)
       ) {
         await axios
-          .post("http://localhost:3003/api/updateEmployee", {
+          .post("https://pro-refer-deployment-server.vercel.app/api/updateEmployee", {
             workEmail,
             position,
             selectedCompany,
@@ -170,7 +170,7 @@ export default function Empcredentials() {
     event.preventDefault();
     try {
       await axios
-        .post("http://localhost:3003/api/requestEmployeeOtp", {
+        .post("https://pro-refer-deployment-server.vercel.app/api/requestEmployeeOtp", {
           workEmail,
           isWorkEmailChanged,
         })
@@ -219,7 +219,7 @@ export default function Empcredentials() {
     event.preventDefault();
     try {
       await axios
-        .post("http://localhost:3003/api/verifyEmployeeOtp", { otp })
+        .post("https://pro-refer-deployment-server.vercel.app/api/verifyEmployeeOtp", { otp })
         .then((res) => {
           if (res.data.message === "Otp verified") {
             toast.success("OTP verified successfully", {

@@ -24,7 +24,7 @@ export default function Login({ setLoggedIn }) {
 
     try {
       response = await axios
-        .post("http://localhost:3003/api/login", {
+        .post("https://pro-refer-deployment-server.vercel.app/api/login", {
           email,
           password,
         })
