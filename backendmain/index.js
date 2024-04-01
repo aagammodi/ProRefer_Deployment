@@ -36,7 +36,8 @@ app.use((req, res, next) => {
 });
 
 try {
-  await mongoose.connect(process.env.MONGODB_URI).then(() => {
+  let x = await process.env.MONGODB_URI;
+  await mongoose.connect(x).then(() => {
     console.log("connected");
   });
 } catch (e) {
