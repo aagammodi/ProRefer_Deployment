@@ -38,7 +38,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(cors(
   {
-    origin: ["https://pro-refer-deployment-frontend.vercel.app"],
+    origin: "https://pro-refer-deployment-frontend.vercel.app",
     methods: ["POST", "GET"],
     credentials: true
   }
