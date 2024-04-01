@@ -11,7 +11,7 @@ import Receivedroutes from "./Routes/Receivedroutes.js";
 import RejectRoutes from "./Routes/Rejectroutes.js";
 import Signuproutes from "./Routes/Signuproutes.js";
 import Empcredentialsroutes from "./Routes/Empcredentialsroutes.js";
-import job, {jobDaily, jobMonthly} from "./cron.js";
+import job, { jobDaily, jobMonthly } from "./cron.js";
 
 import Requestrefroutes from "./Routes/Requestrefroutes.js";
 import * as env from "dotenv";
@@ -36,13 +36,17 @@ app.use((req, res, next) => {
 });
 
 try {
-  let x = await process.env.MONGODB_URI;
+  const x = process.env.MONGODB_URI;
+  if (!x) {
+    throw new Error("MONGODB_URI environment variable is not set");
+  }
   await mongoose.connect(x).then(() => {
     console.log("connected");
   });
 } catch (e) {
   console.log(e);
 }
+
 app.use("/api", Loginroutes);
 app.use("/api", EditProfileRoutes);
 app.use("/api", Pdfroutes);
@@ -57,9 +61,9 @@ app.use("/api", Signuproutes);
 app.use("/api", Empcredentialsroutes);
 const port = process.env.PORT || 3003;
 
-app.use("/", (req, res)=>{
+app.use("/", (req, res) => {
   res.send("Server is running");
-})
+});
 
 app.listen(port, () => {
   console.log("started " + port);
