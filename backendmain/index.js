@@ -49,7 +49,7 @@ try {
   if (!x) {
     throw new Error("MONGODB_URI environment variable is not set");
   }
-  await mongoose.connect(x).then(() => {
+  await mongoose.connect("mongodb+srv://proreferteam:pro2024Refer%40001@prorefer.d3zqjfz.mongodb.net/?retryWrites=true&w=majority").then(() => {
     console.log("connected");
   });
 } catch (e) {
