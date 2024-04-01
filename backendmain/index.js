@@ -10,6 +10,7 @@ import Sentroutes from "./Routes/Sentroutes.js";
 import Receivedroutes from "./Routes/Receivedroutes.js";
 import RejectRoutes from "./Routes/Rejectroutes.js";
 import Signuproutes from "./Routes/Signuproutes.js";
+import cors from "cors";
 import Empcredentialsroutes from "./Routes/Empcredentialsroutes.js";
 import job, { jobDaily, jobMonthly } from "./cron.js";
 
@@ -20,20 +21,27 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use((req, res, next) => {
-  // Set CORS headers to allow cross-origin requests (required to communicate with flutter thorugh localhosting)
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "POST, OPTIONS, PUT, GET, DELETE"
-  );
-  next();
-});
+// app.use((req, res, next) => {
+//   // Set CORS headers to allow cross-origin requests (required to communicate with flutter thorugh localhosting)
+//   res.setHeader("Access-Control-Allow-Origin", "*");
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Origin,Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,locale"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "POST, OPTIONS, PUT, GET, DELETE"
+//   );
+//   next();
+// });
+
+app.use(cors(
+  {
+    origin: ["https://pro-refer-deployment-frontend.vercel.app"],
+    methods: ["POST", "GET"]
+  }
+))
 
 try {
   const x = process.env.MONGODB_URI;
