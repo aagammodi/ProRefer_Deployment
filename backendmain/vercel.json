@@ -6,8 +6,5 @@
       "use": "@vercel/node"
     }
   ],
-  "dependencies": {
-    "bcrypt": "*"
-  },
   "routes": [{ "src": "/(.*)", "dest": "/" }]
 }
