@@ -36,22 +36,26 @@ app.use(express.urlencoded({ extended: true }));
 //   next();
 // });
 
-app.use(cors(
-  {
+app.use(
+  cors({
     origin: "https://pro-refer-deployment-frontend.vercel.app",
     methods: ["POST", "GET"],
-    credentials: true
-  }
-))
+    credentials: true,
+  })
+);
 
 try {
-  const x = process.env.MONGODB_URI;
-  if (!x) {
-    throw new Error("MONGODB_URI environment variable is not set");
-  }
-  await mongoose.connect("mongodb+srv://proreferteam:pro2024Refer%40001@prorefer.d3zqjfz.mongodb.net/?retryWrites=true&w=majority").then(() => {
-    console.log("connected");
-  });
+  // const x = process.env.MONGODB_URI;
+  // if (!x) {
+  //   throw new Error("MONGODB_URI environment variable is not set");
+  // }
+  await mongoose
+    .connect(
+      "mongodb+srv://proreferteam:pro2024Refer%40001@prorefer.d3zqjfz.mongodb.net/?retryWrites=true&w=majority"
+    )
+    .then(() => {
+      console.log("connected");
+    });
 } catch (e) {
   console.log(e);
 }
