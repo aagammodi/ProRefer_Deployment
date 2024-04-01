@@ -55,6 +55,11 @@ app.use("/api", Sentroutes);
 app.use("/api", Signuproutes);
 app.use("/api", Empcredentialsroutes);
 const port = process.env.PORT || 3003;
+
+app.use("/", (req, res)=>{
+  res.send("Server is running");
+})
+
 app.listen(port, () => {
   console.log("started " + port);
 });
